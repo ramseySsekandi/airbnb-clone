@@ -3,8 +3,15 @@ import ResidenceCard from '../ResidenceCard'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel'
 import { Card,CardContent } from '../ui/card'
 import { House, SlidersHorizontal, ToggleLeft } from 'lucide-react'
+import { fetchCategories } from '@/app/actions/actions'
 
-const Hero = () => {
+const Hero = async () => {
+    const  data= {
+        icon:House
+    }
+    const categories = await fetchCategories()
+    const Icon=data.icon
+    
   return (
     <section className='w-full px-10 '>
         {/* CATEGORIES */}
@@ -12,14 +19,14 @@ const Hero = () => {
         {/* Carousel */}
             <Carousel className="w-[70%]">
             <CarouselContent className="-ml-1">
-                {Array.from({ length: 30 }).map((_, index) => (
+                {categories.map((category, index) => (
                 <CarouselItem key={index} className="pl-0 basis-14">
                     <div className="p-1">
                     <Card className='border-0 rounded-none text-card-foreground shadow-none'>
                         <CardContent className="flex flex-col aspect-square items-center justify-center p-1 ">
                         <button className='flex flex-col gap-1 items-center text-center text-gray-500 justify-center hover:text-black '>
-                        <span className=""><House size={18} /></span>
-                        <p className='text-xs '>House</p>
+                        <span className="">{ <Icon size={18} />}</span>
+                        <p className='text-xs '>{category.title}</p>
                         </button>
                         </CardContent>
                     </Card>
