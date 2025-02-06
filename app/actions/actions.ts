@@ -1,8 +1,6 @@
 "use server"
 
-
 import { ICategory } from "@/types/types"
-import { Category } from "@prisma/client"
 export const fetchCategories  = async () => {
     const API = "https://api-backend-eight-pearl.vercel.app/api/categories"
     try {
