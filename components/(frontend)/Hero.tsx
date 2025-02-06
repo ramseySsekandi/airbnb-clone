@@ -2,15 +2,14 @@ import React from 'react'
 import ResidenceCard from '../ResidenceCard'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel'
 import { Card,CardContent } from '../ui/card'
-import { House, SlidersHorizontal, ToggleLeft } from 'lucide-react'
+import { SlidersHorizontal, ToggleLeft,  } from 'lucide-react'
 import { fetchCategories } from '@/app/actions/actions'
+import type { LucideIcon } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 
 const Hero = async () => {
-    const  data= {
-        icon:House
-    }
     const categories = await fetchCategories()
-    const Icon=data.icon
+    console.log(categories)
     
   return (
     <section className='w-full px-10 '>
@@ -19,20 +18,24 @@ const Hero = async () => {
         {/* Carousel */}
             <Carousel className="w-[70%]">
             <CarouselContent className="-ml-1">
-                {categories.map((category, index) => (
-                <CarouselItem key={index} className="pl-0 basis-14">
-                    <div className="p-1">
-                    <Card className='border-0 rounded-none text-card-foreground shadow-none'>
-                        <CardContent className="flex flex-col aspect-square items-center justify-center p-1 ">
-                        <button className='flex flex-col gap-1 items-center text-center text-gray-500 justify-center hover:text-black '>
-                        <span className="">{ <Icon size={18} />}</span>
-                        <p className='text-xs '>{category.title}</p>
-                        </button>
-                        </CardContent>
-                    </Card>
-                    </div>
-                </CarouselItem>
-                ))}
+                {categories.map((category, index) => {
+                    const Icon = LucideIcons[category.icon as keyof typeof LucideIcons] as LucideIcon;
+                    
+                    return(
+                        <CarouselItem key={index} className="pl-0 basis-14">
+                            <div className="p-1">
+                            <Card className='border-0 rounded-none text-card-foreground shadow-none'>
+                                <CardContent className="flex flex-col aspect-square items-center justify-center p-1 ">
+                                <button className='flex flex-col gap-1 items-center text-center text-gray-500 justify-center hover:text-black '>
+                                <span className="">{ <Icon size={18} />}</span>
+                                <p className='text-xs '>{category.title.substring(7)}</p>
+                                </button>
+                                </CardContent>
+                            </Card>
+                            </div>
+                        </CarouselItem>
+                        )
+                })}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />

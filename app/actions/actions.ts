@@ -2,7 +2,7 @@
 
 import { ICategory } from "@/types/types"
 export const fetchCategories  = async () => {
-    const API = "https://api-backend-eight-pearl.vercel.app/api/categories"
+    const API = "https://airbnb-clone-pi-sooty.vercel.app/api/categories"
     try {
         const res = await fetch(API)
         const categories = await res.json()
