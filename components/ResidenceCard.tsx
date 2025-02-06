@@ -2,7 +2,6 @@
 
 import { Star } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import type { CarouselApi } from "@/components/ui/carousel";
 
 const ResidenceCard = () => {
